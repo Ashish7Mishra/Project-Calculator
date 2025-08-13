@@ -68,9 +68,7 @@ body {
 }
 
 
-.calculator,
-#history-panel,
-#history-btn {
+.calculator {
     background: rgba(255, 255, 255, 0.1);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
@@ -160,7 +158,6 @@ button:hover {
   opacity: 0;
 }
 
-/* Modal box */
 .modal-content {
   background: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(15px);
@@ -179,7 +176,6 @@ button:hover {
   text-align: center;
 }
 
-/* History list */
 #history-list {
   max-height: 300px;
   overflow-y: auto;
@@ -194,7 +190,6 @@ button:hover {
   word-wrap: break-word;
 }
 
-/* Buttons in modal */
 .modal-actions {
   display: flex;
   justify-content: space-between;

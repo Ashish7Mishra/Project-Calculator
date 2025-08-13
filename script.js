@@ -1,3 +1,6 @@
+
+const STORAGE_KEY = "calc_history"; // localStorage key
+
 const inputTxt = document.getElementById("input-txt");
 const buttons = document.querySelectorAll(".buttons-grid button"); // calculator buttons only
 
@@ -7,25 +10,33 @@ const historyList = document.getElementById("history-list");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 const closeHistoryBtn = document.getElementById("close-history-btn");
 
-let history = [];
 
-// Button click handling
-buttons.forEach(btn => {
-    btn.addEventListener("click", () => {
-        handleInput(btn.dataset.value);
-    });
-});
+function loadHistory() {
 
-// Keyboard input handling
-document.addEventListener("keydown", (e) => {
-    const keyMap = { Enter: "=", Backspace: "DEL", Delete: "DEL", Escape: "C" };
-    const val = keyMap[e.key] || e.key;
-    const button = document.querySelector(`button[data-value="${val}"]`);
-    if (!button) return;
-    handleInput(val);
-});
+    const raw = localStorage.getItem(STORAGE_KEY);
 
-// Main input handler
+    if (!raw) {
+        return [];
+    }
+    try {
+        return JSON.parse(raw);
+    } 
+    catch {
+        return [];
+    }
+
+}
+
+function saveHistory() {
+    try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(history));
+    } catch {
+        
+    }
+}
+
+let history = loadHistory();
+
 function handleInput(value) {
     if (value === "=") {
         calculate();
@@ -38,17 +49,14 @@ function handleInput(value) {
     }
 }
 
-// Append value to input
 function appendValue(value) {
     inputTxt.value += value;
 }
 
-// Validate expression using regex
 function isValidExpression(expr) {
     return /^[\d+\-*/. ()]+$/.test(expr) && !(/[\+\-*/]{2,}/.test(expr));
 }
 
-// Calculate and update input & history
 function calculate() {
     const expr = inputTxt.value;
     if (!isValidExpression(expr)) {
@@ -68,25 +76,22 @@ function calculate() {
     }
 }
 
-// Clear input field
 function clearResult() {
     inputTxt.value = "";
 }
 
-// Delete last character
 function deleteLast() {
     inputTxt.value = inputTxt.value.slice(0, -1);
 }
 
-// Add to history array and keep max 10
 function addToHistory(expression, result) {
     history.unshift(`${expression} = ${result}`);
     if (history.length > 10) {
-        history.pop();
+        history.length = 10;
     }
+    saveHistory();
 }
 
-// Update history modal content
 function updateHistoryModal() {
     historyList.innerHTML = "";
     if (history.length === 0) {
@@ -101,19 +106,33 @@ function updateHistoryModal() {
     });
 }
 
-// Show history modal on button click
+
+buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+        handleInput(btn.dataset.value);
+    });
+});
+
+
+document.addEventListener("keydown", (e) => {
+    const keyMap = { Enter: "=", Backspace: "DEL", Delete: "DEL", Escape: "C" };
+    const val = keyMap[e.key] || e.key;
+    const button = document.querySelector(`button[data-value="${val}"]`);
+    if (!button) return;
+    handleInput(val);
+});
+
 historyBtn.addEventListener("click", () => {
     updateHistoryModal();
     historyModal.classList.remove("hidden");
 });
 
-// Close modal
 closeHistoryBtn.addEventListener("click", () => {
     historyModal.classList.add("hidden");
 });
 
-// Clear history and update modal
 clearHistoryBtn.addEventListener("click", () => {
     history = [];
+    saveHistory();
     updateHistoryModal();
 });
