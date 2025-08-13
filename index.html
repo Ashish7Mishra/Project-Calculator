@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Glass Calculator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="background">
+        <div class="shape shape1"></div>
+        <div class="shape shape2"></div>
+    </div>
+
+    <main class="container">
+
+        <div class="calculator">
+
+            <div class="display">
+                <input type="text" id="input-txt" readonly>
+            </div>
+
+            <div class="buttons-grid">
+                <button class="spl-button col-span" data-value="C">C</button>
+                <button class="spl-button" data-value="DEL">DEL</button>
+                <button class="operator" data-value="/">/</button>
+                <button class="numbers" data-value="1">1</button>
+                <button class="numbers" data-value="2">2</button>
+                <button class="numbers" data-value="3">3</button>
+                <button class="operator" data-value="*">*</button>
+                <button class="numbers" data-value="4">4</button>
+                <button class="numbers" data-value="5">5</button>
+                <button class="numbers" data-value="6">6</button>
+                <button class="operator" data-value="+">+</button>
+                <button class="numbers" data-value="7">7</button>
+                <button class="numbers" data-value="8">8</button>
+                <button class="numbers" data-value="9">9</button>
+                <button class="operator" data-value="-">-</button>
+                <button class="operator" data-value=".">.</button>
+                <button class="numbers" data-value="0">0</button>
+                <button class="operator col-span" data-value="=">=</button>
+            </div>
+        </div>
+        <div class="history-container">
+  <button id="history-btn">History</button>
+</div>
+
+        <div id="history-modal" class="modal hidden">
+            <div class="modal-content">
+                <h2>Calculation History</h2>
+                <div id="history-list">
+                    <!-- History items will be inserted here -->
+                </div>
+                <div class="modal-actions">
+                    <button id="clear-history-btn">Clear History</button>
+                    <button id="close-history-btn">Close</button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+    <script src="script.js" defer></script>
+</body>
+
+</html>
