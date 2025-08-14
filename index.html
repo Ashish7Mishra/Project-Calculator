@@ -6,6 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Modern Glass Calculator</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css"
+        integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -15,12 +18,19 @@
         <div class="shape shape2"></div>
     </div>
 
+
+
     <main class="container">
 
         <div class="calculator">
 
             <div class="display">
-                <input type="text" id="input-txt" readonly>
+                <div class="display-wrapper">
+                    <input type="text" id="input-txt" readonly>
+                    <button id="copy-btn" title="Copy to clipboard">
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+                </div>
             </div>
 
             <div class="buttons-grid">

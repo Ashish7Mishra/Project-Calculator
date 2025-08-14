@@ -1,14 +1,15 @@
-
-const STORAGE_KEY = "calc_history"; // localStorage key
+const STORAGE_KEY = "calc_history"; 
 
 const inputTxt = document.getElementById("input-txt");
-const buttons = document.querySelectorAll(".buttons-grid button"); // calculator buttons only
+const buttons = document.querySelectorAll(".buttons-grid button"); 
 
 const historyBtn = document.getElementById("history-btn");
 const historyModal = document.getElementById("history-modal");
 const historyList = document.getElementById("history-list");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 const closeHistoryBtn = document.getElementById("close-history-btn");
+
+const copyBtn = document.getElementById("copy-btn"); // --- NEW: Get the copy button
 
 
 function loadHistory() {
@@ -37,7 +38,16 @@ function saveHistory() {
 
 let history = loadHistory();
 
+function toggleCopyButtonVisibility() {
+    if (inputTxt.value.length > 0 && inputTxt.value !== "Error") {
+        copyBtn.classList.add("show");
+    } else {
+        copyBtn.classList.remove("show");
+    }
+}
+
 function handleInput(value) {
+
     if (value === "=") {
         calculate();
     } else if (value === "C") {
@@ -47,6 +57,8 @@ function handleInput(value) {
     } else {
         appendValue(value);
     }
+
+    toggleCopyButtonVisibility(); 
 }
 
 function appendValue(value) {
@@ -59,8 +71,9 @@ function isValidExpression(expr) {
 
 function calculate() {
     const expr = inputTxt.value;
-    if (!isValidExpression(expr)) {
+    if (!expr || !isValidExpression(expr)) {
         inputTxt.value = "Error";
+        toggleCopyButtonVisibility(); 
         return;
     }
     try {
@@ -74,6 +87,7 @@ function calculate() {
     } catch {
         inputTxt.value = "Error";
     }
+    toggleCopyButtonVisibility(); 
 }
 
 function clearResult() {
@@ -119,6 +133,8 @@ document.addEventListener("keydown", (e) => {
     const val = keyMap[e.key] || e.key;
     const button = document.querySelector(`button[data-value="${val}"]`);
     if (!button) return;
+
+
     handleInput(val);
 });
 
@@ -135,4 +151,22 @@ clearHistoryBtn.addEventListener("click", () => {
     history = [];
     saveHistory();
     updateHistoryModal();
+});
+
+copyBtn.addEventListener("click", () => {
+    navigator.clipboard.writeText(inputTxt.value).then(() => {
+
+        const icon = copyBtn.querySelector("i");
+        icon.classList.remove("fa-copy");
+        icon.classList.add("fa-check");
+        copyBtn.title = "Copied!";
+
+        setTimeout(() => {
+            icon.classList.remove("fa-check");
+            icon.classList.add("fa-copy");
+            copyBtn.title = "Copy to clipboard";
+        }, 1500);
+    }).catch(err => {
+        console.error('Failed to copy text: ', err);
+    });
 });

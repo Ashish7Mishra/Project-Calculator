@@ -1,42 +1,45 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 body {
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
-    background-color: #1a1a1d;
-    color: #fff;
-    overflow: hidden; 
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle, rgba(255, 230, 243, 0.547) 0%, rgba(191, 232, 255, 0.634) 100%);
+  color: #333;
+  overflow: hidden;
 }
 
 .background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
 }
 
 .shape {
-    position: absolute;
-    border-radius: 50%;
-    filter: blur(150px);
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(150px);
 }
+
+
 
 .shape1 {
     width: 400px;
     height: 400px;
-    background: linear-gradient(to right, #6f00ff, #9f52ff);
+        background: linear-gradient(to right, #a6abd6, #9cd2d3);
+
     top: -100px;
     left: -100px;
     animation: move 15s infinite alternate;
@@ -45,95 +48,105 @@ body {
 .shape2 {
     width: 300px;
     height: 300px;
-    background: linear-gradient(to right, #ff007b, #ff52a8);
-    bottom: -50px;
-    right: -50px;
+        background: linear-gradient(to right, #a98ecd, #ae94ce);
+
+    bottom: -100px;
+    right: -5100px;
     animation: move 20s infinite alternate-reverse;
 }
 
 @keyframes move {
-    from {
-        transform: translate(0, 0) rotate(0deg);
-    }
-    to {
-        transform: translate(200px, 100px) rotate(360deg);
-    }
+  from {
+    transform: translate(0, 0) rotate(0deg);
+  }
+
+  to {
+    transform: translate(200px, 100px) rotate(360deg);
+  }
 }
 
 .container {
   display: flex;
-  flex-direction: column; /* stack vertically */
+  flex-direction: column;
   align-items: center;
   gap: 1.5em;
+  padding: 1em;
 }
 
 
 .calculator {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
 
 .calculator {
-    padding: 2em;
-    border-radius: 20px;
+  padding: 2em;
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
 }
 
 .display {
-    padding-bottom: 2rem;
+  padding-bottom: 2rem;
 }
 
 #input-txt {
-    width: 100%;
-    height: 5rem;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 12px;
-    background-color: rgba(0, 0, 0, 0.2);
-    font-size: 2.5rem;
-    color: #fff;
-    text-align: right;
-    font-weight: 300;
+  width: 100%;
+  height: 5rem;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 12px;
+  background-color: rgb(0 0 0 / 10%);
+  font-size: 2.5rem;
+  color: #0c4f3ead;
+  text-align: right;
+  font-weight: 300;
 }
 
 .buttons-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 1.2em;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.2em;
 }
 
 .col-span {
-    grid-column: span 2;
+  grid-column: span 2;
 }
 
 button {
-    color: #fff;
-    padding: 1.2em;
-    font-weight: 500;
-    border-radius: 15px;
-    cursor: pointer;
-    font-size: 1.1rem;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    background: rgba(255, 255, 255, 0.05);
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
-    transition: all 0.2s ease-in-out;
+  color: #0c4f3ead;
+  padding: 1.2em;
+  font-weight: 500;
+  border-radius: 15px;
+  cursor: pointer;
+  font-size: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+  font-weight: bold;
 }
 
 button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-3px);
+  color: #0c4f3ed9;
 }
 
 
 
 .operator {
-    background-color: #ff8c0085;
+  background-color: #ff8c0088;
+  color: white;
 }
 
 .spl-button {
-    background-color: #00c8ff76;
+  background-color: #00c8ff70;
+  color: rgba(255, 255, 255, 0.822);
+
 }
 
 
@@ -145,12 +158,13 @@ button:hover {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.258);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 100;
   transition: opacity 0.3s ease;
+  padding: 1em;
 }
 
 .modal.hidden {
@@ -159,14 +173,15 @@ button:hover {
 }
 
 .modal-content {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(0, 0, 0, 0.258);
   backdrop-filter: blur(15px);
   border-radius: 15px;
   padding: 1.5em 2em;
-  width: 320px;
+  width: 100%;
+  max-width: 320px;
   max-height: 70vh;
   overflow-y: auto;
-  box-shadow: 0 0 15px #6f00ffaa;
+  box-shadow: 0 0 15px #0d0d0da4;
   color: #fff;
 }
 
@@ -184,7 +199,7 @@ button:hover {
 
 .history-item {
   padding: 0.5rem 0;
-  border-bottom: 1px solid rgba(255,255,255,0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   font-weight: 300;
   font-size: 1rem;
   word-wrap: break-word;
@@ -195,7 +210,8 @@ button:hover {
   justify-content: space-between;
 }
 
-#clear-history-btn, #close-history-btn {
+#clear-history-btn,
+#close-history-btn {
   background-color: #00c8ff76;
   border: none;
   padding: 0.7em 1.3em;
@@ -206,8 +222,120 @@ button:hover {
   transition: background-color 0.2s ease;
 }
 
-#clear-history-btn:hover, #close-history-btn:hover {
+#clear-history-btn:hover,
+#close-history-btn:hover {
   background-color: #00a5d9;
 }
 
 
+/* --- Styles for Responsive Design --- */
+@media (max-width: 768px) {
+  .calculator {
+    padding: 1.5em;
+    box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.25);
+  }
+
+  #input-txt {
+    height: 4.5rem;
+    font-size: 2rem;
+  }
+
+  .buttons-grid {
+    gap: 0.8em;
+  }
+
+  button {
+    padding: 1em;
+    font-size: 1rem;
+  }
+
+  .shape {
+    filter: blur(100px);
+  }
+
+  .shape1 {
+    width: 300px;
+    height: 300px;
+  }
+
+  .shape2 {
+    width: 200px;
+    height: 200px;
+  }
+
+  @keyframes move {
+    from {
+      transform: translate(0, 0) rotate(0deg);
+    }
+
+    to {
+      transform: translate(100px, 50px) rotate(180deg);
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0.5em;
+  }
+
+  .calculator {
+    padding: 1em;
+  }
+
+  #input-txt {
+    height: 4rem;
+    font-size: 1.8rem;
+  }
+
+  .buttons-grid {
+    gap: 0.6em;
+  }
+
+  button {
+    padding: 0.8em;
+  }
+
+  .shape1,
+  .shape2 {
+    display: none;
+  }
+}
+
+
+
+
+
+
+.display-wrapper {
+  position: relative;
+}
+
+#copy-btn {
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  color: #0c4f3e4a;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 5px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease-in-out, color 0.2s ease-in-out;
+}
+
+#copy-btn.show {
+  opacity: 0.6;
+  pointer-events: auto;
+}
+
+#copy-btn:hover {
+  background: transparent;
+  transform: translateY(-50%) scale(1.1);
+  color: #0c4f3eb0;
+  opacity: 1;
+}
