@@ -9,7 +9,7 @@ const historyList = document.getElementById("history-list");
 const clearHistoryBtn = document.getElementById("clear-history-btn");
 const closeHistoryBtn = document.getElementById("close-history-btn");
 
-const copyBtn = document.getElementById("copy-btn"); // --- NEW: Get the copy button
+const copyBtn = document.getElementById("copy-btn"); 
 
 
 function loadHistory() {
@@ -66,13 +66,15 @@ function appendValue(value) {
 }
 
 function isValidExpression(expr) {
-    return /^[\d+\-*/. ()]+$/.test(expr) && !(/[\+\-*/]{2,}/.test(expr));
+    return /^\d+(\.\d+)?([+\-*/]\d+(\.\d+)?)+$/.test(expr);
 }
+
+
 
 function calculate() {
     const expr = inputTxt.value;
     if (!expr || !isValidExpression(expr)) {
-        inputTxt.value = "Error";
+        inputTxt.value = "";
         toggleCopyButtonVisibility(); 
         return;
     }
@@ -80,9 +82,10 @@ function calculate() {
         const result = eval(expr);
         if (typeof result === "number" && isFinite(result)) {
             inputTxt.value = result;
-            addToHistory(expr, result);
+                addToHistory(expr, result);
+            
         } else {
-            inputTxt.value = "Error";
+            inputTxt.value = "";
         }
     } catch {
         inputTxt.value = "Error";
